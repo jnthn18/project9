@@ -1,0 +1,17 @@
+<% content_for :holidays do %>
+	<h2>US Holidays For <%= Time.new.strftime("%B-%Y") %></h2>
+	<ul>
+		<% @holidays.each do |holiday| %>
+			<li><%= holiday[0]["date"] %> - <span class="holiday"><%= holiday[0]["name"] %></span></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% content_for :birthday do %>
+	<h2>US Holidays For January-1992</h2>
+	<ul>
+		<% @holidays_bday.each do |bday| %>
+			<li><%= bday[0]["date"] %> - <span class="holiday"><%= bday[0]["name"] %></span></li>
+		<% end %>
+	</ul>
+<% end %>
