@@ -1,17 +1,40 @@
 <% content_for :holidays do %>
-	<h2>US Holidays For <%= Time.new.strftime("%B-%Y") %></h2>
+	<form>
+		<div class="form-group">
+		<label for="month">Choose a Month</label>
+		<select name="month" class="form-control">
+			 <% 1.upto(12) do |month| %>
+        <option value="<%= month %>" <%= 'selected="selected"' if params[:month] == month %>><%= month %></option>
+      <% end %>
+		</select>
+		</div>
+		<div class="form-group">
+		<label for="year">Select a Year</label>
+		<select name="year" class="form-control">
+			 <% 1945.upto(2040) do |year| %>
+        <option value="<%= year %>" <%= 'selected="selected"' if params[:year] == year %>><%= year %></option>
+      <% end %>
+		</select>
+		</div>
+		<div class="form-group">
+		<select name="country" class="form-control">
+				<% %w(be br gb us).each do |country| %>
+        <option value="<%= country %>" <%= 'selected="selected"' if params[:country] == country %>><%= country.capitalize %></option>
+      <% end %>
+		</select>
+		</div>
+		<button type="submit" class="btn btn-primary">Find Holidays!</button>
+	</form>
+
+	<div id="holidays">
+	<% if @holidays.any? %>
 	<ul>
 		<% @holidays.each do |holiday| %>
 			<li><%= holiday[0]["date"] %> - <span class="holiday"><%= holiday[0]["name"] %></span></li>
 		<% end %>
 	</ul>
-<% end %>
-
-<% content_for :birthday do %>
-	<h2>US Holidays For January-1992</h2>
-	<ul>
-		<% @holidays_bday.each do |bday| %>
-			<li><%= bday[0]["date"] %> - <span class="holiday"><%= bday[0]["name"] %></span></li>
-		<% end %>
-	</ul>
+	<% else %>
+		<h3>Sorry we couldn't find any holidays</h3>
+	<% end %>
+	</div>
 <% end %>
