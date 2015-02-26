@@ -4,7 +4,7 @@
 		<label for="month">Choose a Month</label>
 		<select name="month" class="form-control">
 			 <% 1.upto(12) do |month| %>
-        <option value="<%= month %>" <%= 'selected="selected"' if params[:month] == month %>><%= month %></option>
+        <option value="<%= month %>" <%= 'selected="selected"' if params[:month].to_i == month %>><%= month %></option>
       <% end %>
 		</select>
 		</div>
@@ -12,7 +12,7 @@
 		<label for="year">Select a Year</label>
 		<select name="year" class="form-control">
 			 <% 1945.upto(2040) do |year| %>
-        <option value="<%= year %>" <%= 'selected="selected"' if params[:year] == year %>><%= year %></option>
+        <option value="<%= year %>" <%= 'selected="selected"' if params[:year].to_i == year %>><%= year %></option>
       <% end %>
 		</select>
 		</div>
@@ -27,7 +27,7 @@
 	</form>
 
 	<div id="holidays">
-	<% if @holidays.any? %>
+	<% if !params[:month].nil? %>
 	<ul>
 		<% @holidays.each do |holiday| %>
 			<li><%= holiday[0]["date"] %> - <span class="holiday"><%= holiday[0]["name"] %></span></li>
