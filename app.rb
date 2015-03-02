@@ -1,13 +1,13 @@
 require 'sinatra'
-require 'sinatra/content_for'
-require 'holidapi'
+require 'cat_api'
 
-class MyWebApp < Sinatra::Base
-	helpers Sinatra::ContentFor
+require_relative 'helpers/methods_practice_helpers'
 
-	get '/' do
-		puts params
-		@holidays = HolidApi.get(params)
-		erb :index
-	end
+class MethodsPracticeApp < Sinatra::Base
+  get '/' do
+    @cat_image = CatAPI.new.get_images(type: 'gif').first
+    erb :index
+  end
+
+  helpers MethodsPracticeHelpers
 end

@@ -1,40 +1,11 @@
-<% content_for :holidays do %>
-	<form>
-		<div class="form-group">
-		<label for="month">Choose a Month</label>
-		<select name="month" class="form-control">
-			 <% 1.upto(12) do |month| %>
-        <option value="<%= month %>" <%= 'selected="selected"' if params[:month].to_i == month %>><%= month %></option>
-      <% end %>
-		</select>
-		</div>
-		<div class="form-group">
-		<label for="year">Select a Year</label>
-		<select name="year" class="form-control">
-			 <% 1945.upto(2040) do |year| %>
-        <option value="<%= year %>" <%= 'selected="selected"' if params[:year].to_i == year %>><%= year %></option>
-      <% end %>
-		</select>
-		</div>
-		<div class="form-group">
-		<select name="country" class="form-control">
-				<% %w(be br gb us).each do |country| %>
-        <option value="<%= country %>" <%= 'selected="selected"' if params[:country] == country %>><%= country.capitalize %></option>
-      <% end %>
-		</select>
-		</div>
-		<button type="submit" class="btn btn-primary">Find Holidays!</button>
-	</form>
+<%= bootstrap_alert "<strong>Warning! Warning!</strong> It looks like it's <strong>#{current_date_and_time}</strong>!", 'warning' %>
 
-	<div id="holidays">
-	<% if !params[:month].nil? %>
-	<ul>
-		<% @holidays.each do |holiday| %>
-			<li><%= holiday[0]["date"] %> - <span class="holiday"><%= holiday[0]["name"] %></span></li>
-		<% end %>
-	</ul>
-	<% else %>
-		<h3>Sorry we couldn't find any holidays</h3>
-	<% end %>
-	</div>
-<% end %>
+<section class="jumbotron text-center">
+  <p>You know what time that is?</p>
+  <h1>It's... CAT GIF TIME!</h1>
+
+  <figure>
+    <%= image_tag @cat_image.url, 'CAT GIF!' %>
+    <figcaption>Source: <a href="<%= @cat_image.source_url %>"><%= @cat_image.source_url %></a></figcaption>
+  </figure>
+</section>
